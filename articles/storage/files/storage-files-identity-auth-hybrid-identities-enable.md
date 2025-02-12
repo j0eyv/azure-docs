@@ -226,7 +226,41 @@ Add an entry for each storage account that uses on-premises AD DS integration. U
 
 # [Intune](#tab/intune)
 
+**Policy CSP:**
+
 Configure this Intune [Policy CSP](/windows/client-management/mdm/policy-configuration-service-provider) and apply it to the client(s): [Kerberos/HostToRealm](/windows/client-management/mdm/policy-csp-admx-kerberos#hosttorealm)
+
+
+**Settings Catalog:**
+
+To enable HostToRealm using Microsoft Intune:
+
+
+1. Sign in to the [Microsoft Intune admin center](https://endpoint.microsoft.com/).
+
+2. [Create or edit a configuration profile](/mem/intune/configuration/administrative-templates-windows) for **Windows 10 and later** devices, with the **Settings catalog** profile type.
+
+3. In the settings picker, browse to **Administrative templates** > **System** > **Kerberos**.
+
+4. Check the box for **Define host name-to-realm mappings: (Device)**
+   
+5. Expand the **Administrative templates** category, then toggle the switch for **Define host name-to-realm mappings: (Device)** to **Enabled** or **Disabled**, depending on your requirements:
+
+   - To configure HostToRealm, toggle the switch to **Enable**.
+
+   - To remove HostToRealm, toggle the switch to **Disabled**.
+  
+6. Configure the required settings.
+   - `Value name` is the AD DS realm name (e.g. DOMAIN.LOCAL).
+   - `Value` is the AD DS-enabled storage account's host name, i.e. `<your storage account name>.file.core.windows.net`
+  
+7. Click **Next**.
+
+8. On the **Assignments** tab, select the group containing the devices you want to configure, then select **Next**.
+
+9. On the **Review + create** tab, review the settings, then select **Create**.
+
+10. Once the policy applies to the devices, restart them for the settings to take effect.
 
 # [Group Policy](#tab/gpo)
 
